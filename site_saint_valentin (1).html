@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ma Valentine ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    .card {
+      background: rgba(255,255,255,0.15);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      max-width: 480px;
+      backdrop-filter: blur(10px);
+    }
+    h1 { font-size: 2em; }
+    button {
+      border: none;
+      padding: 15px 25px;
+      margin: 10px;
+      font-size: 1em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform .2s, background .3s;
+    }
+    button:hover { transform: scale(1.08); }
+    .yes { background:#ff4d6d; color:#fff; }
+    .no { background:rgba(255,255,255,0.4); color:#fff; }
+  </style>
+</head>
+<body>
+
+<div class="card" id="card"></div>
+
+<script>
+
+let step = 1;
+
+function renderQuestion() {
+  const card = document.getElementById("card");
+
+  if(step === 1){
+    card.innerHTML = `
+      <h1>💌 Tu fais quoi le 14 février ?</h1>
+      <button class="yes" onclick="q1_yes()">Je suis libre</button>
+      <button class="no" onclick="fail()">Je suis occupé désolé</button>
+    `;
+  }
+
+  if(step === 2){
+    card.innerHTML = `
+      <h1>💖 Viens on passe une super saint valentin ensemble ?</h1>
+      <button class="yes" onclick="q2_yes()">Oui avec plaisir l'homme de ma vie</button>
+      <button class="no" onclick="fail()">Je suis pas sur</button>
+    `;
+  }
+
+  if(step === 3){
+    card.innerHTML = `
+      <h1>🔥 Pour ce qui se passe après on Doro ?</h1>
+      <button class="yes" onclick="playMusic()">Oui</button>
+    `;
+  }
+}
+
+function q1_yes(){
+  step = 2;
+  renderQuestion();
+}
+
+function q2_yes(){
+  step = 3;
+  renderQuestion();
+}
+
+function fail(){
+  document.getElementById("card").innerHTML = `
+    <h1>😤 Bah va te faire foutre ma kitoko</h1>
+  `;
+}
+
+function playMusic(){
+  window.location.href = "https://open.spotify.com/search/cambrure%20jok'air";
+}
+
+renderQuestion();
+
+</script>
+
+</body>
+</html>
